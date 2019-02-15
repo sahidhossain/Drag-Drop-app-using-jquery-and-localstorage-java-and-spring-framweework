@@ -1,0 +1,150 @@
+/* nanoscrollbar */
+.nano .pane   { background: #555; }
+.nano .slider { background: #233; }
+
+body {
+    /* Override bootstrap properties */
+    background-color: #563258 !important;
+    border: 0 !important;
+}
+.imgNone img{
+ display: none;
+}
+.edit-job-icon{
+    width: 15px;
+    height: 15px;
+    margin: 5px;
+}
+
+.edit-job-icon:hover{
+    opacity: 0.3;
+}
+.delete-job-icon{
+    width: 15px;
+    height: 15px;
+    margin: 5px;
+}
+
+.delete-job-icon:hover{
+    opacity: 0.3;
+}
+ 
+#container{
+    margin: 0 auto;
+    width: 1060px;
+    min-height: 100%;
+    background-color: transparent;
+    border: 0;
+    text-align:center
+}
+
+#header{
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    color: #fff;
+}
+
+
+.task-list{
+    width: 250px;
+    float: left;
+    margin: 0 5px;
+    background-color: #e3e3e3;
+    min-height: 240px;
+    border-radius: 10px;
+    padding-bottom: 15px;
+}
+
+.task-list input, .task-list textarea{
+    width: 240px;
+    margin: 1px 5px;
+}
+
+.task-list input{
+    height: 30px;
+}
+
+.todo-task{
+    border-radius: 5px;
+    background-color: #fff;
+    width: 230px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.task-list input[type="button"]{
+    width: 100px;
+    margin: 5px;
+
+}
+
+.todo-task > .task-header{
+    font-weight: bold;
+    overflow: auto;
+    text-align: center;
+}
+
+.todo-task > .task-date{
+    font-size: small;
+    font-style: italic;
+}
+
+.todo-task > .task-description{
+    font-size: smaller;
+    overflow: auto;
+}
+
+h3{
+    text-align: center;
+}
+
+#delete-div{
+    display: none;
+    background-color: #fff;
+    border: 3px dotted #000;
+    margin: 10px;
+    height: 75px;
+    line-height: 75px;
+    text-align: center;
+}
+
+/*use for model*/
+#modal-background {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    opacity: ;
+    -webkit-opacity: .5;
+    -moz-opacity: .5;
+    filter: alpha(opacity=50);
+    z-index: 1000;
+}
+
+#task-list-interface {
+    background-color: beige;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    box-shadow: 0 0 20px 0 #222;
+    -webkit-box-shadow: 0 0 20px 0 #222;
+    -moz-box-shadow: 0 0 20px 0 #222;
+    display: none;
+    height: 240px;
+    left: 50%;
+    margin: -120px 0 0 -160px;
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    width: 320px;
+    z-index: 1000;
+}
+
+#modal-background.active, #task-list-interface.active {
+    display: block;
+}​

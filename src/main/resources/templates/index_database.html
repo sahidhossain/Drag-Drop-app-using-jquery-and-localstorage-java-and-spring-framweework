@@ -1,0 +1,77 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>To do list</title>
+<link rel="stylesheet" href="lib/Bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" href="lib/jQuery/jquery.ui.min.css" />
+<link rel="stylesheet" href="assets/todo.css" />
+</head>
+
+<body class="well">
+  <a id="baseUrl" th:href="@{/}"></a>
+	<div id="container">
+		<div id="header">To Do List</div>
+		<button style="position: relative; top: 0px; left: -795px; top: 15px;"
+			class="btn btn-info" id="new_button">
+			<b>add todo</b>
+		</button>
+		<div style="margin-left: 150px" class="task-list task-container"
+			id="pending">
+			<h3 style="margin-left: 50px">New Task</h3>
+			<!-- <div style="margin-left: 150px" class="task-list task-container" id="pending">
+                <h3>New Task</h3>
+                <button class="text-center fixed btn btn-info"id="new_button" >add todo</button> -->
+			<!--   <div class="todo-task">
+                    <div class="task-header">Sample Header</div>
+                    <div class="task-date">25/06/1992</div>
+                    <div class="task-description">Lorem Ipsum Dolor Sit Amet</div>
+                    <img class="edit-job-icon" src="https://image.flaticon.com/icons/svg/61/61456.svg">
+                    <img class="edit-job-icon" src="https://image.flaticon.com/icons/png/512/126/126468.png">
+                </div> -->
+		</div>
+		<div class="imgNone task-list task-container" id="inProgress">
+			<h3>In Progress</h3>
+		</div>
+		<div class="imgNone task-list task-container" id="completed">
+			<h3>Completed</h3>
+		</div>
+		<div id="model-background"></div>
+		<div class="task-list" id="task-list-interface" hidden>
+			<h3>Add a task</h3>
+			<form id="todo-form">
+				<input type="text" placeholder="Title" id="input-title" name="title" />
+				<textarea placeholder="Description" id="input-description" name="description"></textarea>
+				<input type="text" id="datepicker" placeholder="Deadline" name="date"/>
+				<input type="hidden" value="1" name="code"> 
+				 <input
+					type="button" id="add-task-btn" class="btn btn-primary"
+					value="Add Task" onclick="todo.add();" />
+			</form>
+		<!-- <!-- 	<input type="button" class="btn btn-primary" value="Clear Data"
+				onclick="todo.clear();" />  --> -->
+		<input style="position: relative; top: -24px;left:-10px;" type="button"
+				class="btn btn-danger" value="Close" id="modal-close" />
+
+			<div id="delete-div">Drag Here to Delete</div>
+		</div>
+		<div style="clear: both;"></div>
+		<script type="text/javascript" src="lib/jQuery/jquery.min.js"></script>
+		<script type="text/javascript" src="lib/Bootstrap/bootstrap.min.js"></script>
+		<script type="text/javascript" src="lib/jQuery/jquery.ui.min.js"></script>
+		<script type="text/javascript" src="assets/todo_database.js"></script>
+		<script type="text/javascript">
+			$("#datepicker").datepicker({
+				changeMonth : true,
+				changeYear : true,
+				dateFormat : 'd MM yy'
+			});
+			$(".task-container").droppable();
+			$(".todo-task").draggable({
+				revert : "valid",
+				revertDuration : 200
+			});
+			todo.init();
+		</script>
+
+	</div>
+</body>
+</html>
