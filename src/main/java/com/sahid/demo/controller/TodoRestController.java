@@ -33,7 +33,7 @@ public class TodoRestController {
 		return todoservice.findAllTask();
 	}
 
-	@PostMapping(value = "/daleteTodo")
+	@PostMapping(value = "/deleteTodo")
 	public String deleteTask(Long id) {
 		todoservice.deleteTask(id);
 		return "Done";

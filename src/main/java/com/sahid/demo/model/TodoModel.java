@@ -1,16 +1,15 @@
 package com.sahid.demo.model;
 
 import java.io.Serializable;
-import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "todolist3")
@@ -19,6 +18,7 @@ public class TodoModel implements Serializable {
 	private static final long serialVersionUID = -3009157732242241606L;
 
 	@Id
+//	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id") // updatable = false, nullable = false
 	private Long id;

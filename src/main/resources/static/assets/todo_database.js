@@ -50,6 +50,7 @@ var update_id = 0;
 				totalData=obj;
 				$.each(obj, function(i, task) {
 					generateElement(task);
+//					alert(obj[i]);
 				});
 			},
 			error : function(e) {
@@ -58,22 +59,38 @@ var update_id = 0;
 		});
 	}
 	
-	function getTask(taskId) {
+	function updateTodo(taskId) {
+		alert(taskId);
 		$.ajax({
-			type : "Get",
-			url : $('#baseUrl').attr('href') + "todo/getTodo/" + taskId,
-			// data : {id : taskId},
-			success : function(task) {
+			type : "GET",
+			url : $('#baseUrl').attr('href') + "todo/getTodo/"+taskId,
+//			data : $('#todo-form').serializeArray(),
+			success : function(status) {
+				alert("sahid");
 				console.log(task);
-				// if (task.id.length>0) {
-				$("#id").val(task.id);
-				$("#parent").val(task.parent);
-				$("#title").val(task.title);
-				$("#description").val(task.description);
 				
-				// } else {
-				// console.log("Error to getting task from controller");
-				// }
+				
+			},
+			error : function(e) {
+				alert("error");
+				console.log("ERROR: ", e);
+			}
+		});
+	}
+	function deleteTask(taskId) {
+		$.ajax({
+			type : "POST",
+			url : $('#baseUrl').attr('href') + "todo/deleteTodo",
+			data : {
+				id : taskId
+			},
+			success : function(status) {
+				findTasks();
+				if (status == "Done") {
+					console.log("Delete ok");
+				} else {
+					console.log("Error to deleting from controller");
+				}
 			},
 			error : function(e) {
 				console.log("ERROR: ", e);
@@ -106,16 +123,27 @@ var update_id = 0;
 							css_id = element.attr("id"), 
 							id = css_id.replace(options.taskId, ""),
 							object = totalData[id];
+							updateTodo(id);
+							alert(css_id+"  "+id+" "+object.id);
+							$("#id").val(object.id);
+							$("#input-title").val(object.title);
+							$("#input-description").val(object.description);
+							$("#datepicker").val(object.date);
+							$("#code").val(index);
+//							$("#task-list-interface").show();
+							addTask();
 							// Removing old element
 							removeElement(object);
 							// Changing object code
-							object.code = index;
+//							object.code = index;
 							// Generating new element
 							generateElement(object);
 							// Updating Local Storage
-							data[id] = object;
-							localStorage.setItem("todoData", JSON
-									.stringify(data));
+//							totalData[id-1] = object;
+							
+//							updateTodo(id,object.code);
+							
+//							localStorage.setItem("todoData", JSON.stringify(data));
 							// Hiding Delete Area
 							$("#" + defaults.deleteDiv).hide();
 							refresh();
@@ -280,7 +308,7 @@ var update_id = 0;
 	todo.add = function() {
 		var inputs = $("#" + defaults.formId + " :input"), errorMessage = "Fields can not be empty", id, title, description, date, tempData;
 
-		if (inputs.length !== 5) {
+		if (inputs.length !== 6) {
 			alert("Inpt eror");
 			return;
 		}
@@ -315,7 +343,6 @@ var update_id = 0;
 	};
 	
 	function addTask() {
-		
 		$.ajax({
 			type : "POST",
 			url : $('#baseUrl').attr('href') + "todo/saveTodo",
@@ -323,6 +350,11 @@ var update_id = 0;
 			success : function(status) {
 				if (status == "Done") {
 					console.log("Save ok");
+					$('#id').val("");
+					$('#input-title').val("");
+					$('#input-description').val("");
+					$('#datepicker').val("");
+					$('#code').val("");
 				} else {
 					console.log("Error from controller");
 				}

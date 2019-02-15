@@ -38,10 +38,12 @@
 		<div class="task-list" id="task-list-interface" hidden>
 			<h3>Add a task</h3>
 			<form id="todo-form">
+			  
 				<input type="text" placeholder="Title" id="input-title" name="title" />
 				<textarea placeholder="Description" id="input-description" name="description"></textarea>
 				<input type="text" id="datepicker" placeholder="Deadline" name="date"/>
-				<input type="hidden" value="1" name="code"> 
+				<input type="hidden" value="1" name="code" id="code"> 
+				  <input type="hidden" id="id" name="id">
 				 <input
 					type="button" id="add-task-btn" class="btn btn-primary"
 					value="Add Task" onclick="todo.add();" />
