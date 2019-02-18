@@ -1,4 +1,5 @@
 package com.sahid.demo.controller;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,14 +17,14 @@ public class TodoRestController {
 	@Autowired
 	TodoService todoservice;
 
-
 	@PostMapping(value = "/saveTodo")
 	public String saveTask(TodoModel todomodel) {
 		todoservice.saveTask(todomodel);
 		return "Done";
 	}
 
-	@GetMapping(value = "/getTodo/{id}")
+
+	@GetMapping(value = "/getTask/{id}")
 	public TodoModel getTaskById(@PathVariable Long id) {
 		return this.todoservice.getTaskById(id);
 	}
