@@ -24,7 +24,7 @@ public class TodoRestController {
 	}
 
 
-	@GetMapping(value = "/getTask/{id}")
+	@GetMapping(value = "/getTodo/{id}")
 	public TodoModel getTaskById(@PathVariable Long id) {
 		return this.todoservice.getTaskById(id);
 	}
