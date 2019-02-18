@@ -1,5 +1,32 @@
 
 $(document).ready(function() {
+	
+
+	 if(localStorage.getItem("update")=="update")
+		 {
+			 $("#update-messege").fadeIn('slow');
+		     $('#update-messege').delay(1000).fadeOut('slow');
+		     $("#update-messege").fadeIn('slow');
+		     $('#update-messege').delay(1000).fadeOut('slow');
+			 localStorage.clear();
+		 }
+	 else if(localStorage.getItem("messege")=="delete")
+		 {
+			 $("#delete-messege").fadeIn('slow');
+		     $('#delete-messege').delay(1000).fadeOut('slow');
+		     $("#delete-messege").fadeIn('slow');
+		     $('#delete-messege').delay(1000).fadeOut('slow');
+			 localStorage.clear();
+		 }
+	 else if(localStorage.getItem("messege")=="success")
+	    {
+		 	$("#success-messege").fadeIn('slow');
+	        $('#success-messege').delay(1000).fadeOut('slow');
+	        $("#success-messege").fadeIn('slow');
+	        $('#success-messege').delay(1000).fadeOut('slow');
+	        localStorage.clear();
+	    }
+	 
 	$("#new_button").click(function() {
 		$("#task-list-interface").show();
 		$("#task-list-interface").draggable();
@@ -42,8 +69,8 @@ $(document).ready(function() {
 		});
 	}
 	//submit the input values into addTodo method
-	$('.submit-btn').click(function(){
-		var inputs = $("#" + defaults.formId + " :input"), errorMessage = "Fields can not be empty", id, title, description, date, tempData;
+	$('.submit-btn').unbind('click').bind("click",function(){
+		var inputs = $("#" + defaults.formId + " :input"), errorMessage = "Fields can not be empty", title, description, date, tempData;
 		if (inputs.length !== 6) {
 			alert("Input length error");
 			return;
@@ -63,6 +90,7 @@ $(document).ready(function() {
 		// code:"1"
 		// };
 		// generateElement(tempData);
+		localStorage.setItem("messege","success");
 		addTodo();
 		refresh(); 
 		});
@@ -121,7 +149,7 @@ $(document).ready(function() {
 		});
 	});
 	//after enter update button it send the values to addTodo
-	$("#update-task-btn").click(function() {
+	$("#update-task-btn").unbind('click').bind("click",function() {
 			var inputs = $("#" + defaults.formId + " :input"),
 			errorMessage = "Fields can not be empty",
 			title, description, date;
@@ -196,6 +224,7 @@ $(document).ready(function() {
 				function() {
 					if (confirm("Are you sure want to delete this todo?")) {
 						deleteTodo(id);
+						localStorage.setItem("messege","delete");
 						refresh();
 					}
 				});
@@ -207,9 +236,12 @@ $(document).ready(function() {
 						 $("#input-description").val($(this).attr("text3"));
 						 $("#datepicker").val($(this).attr("text2"));
 						 $("#add-task-btn").val("Update task").addClass("btn-info").attr('id','update-task-btn-');
+						 $("#popup-header").text("Update the task");
 						 $("#task-list-interface").show();
+						 localStorage.setItem("update","update");
 						 $("#modal-close").click(function(){
-						 refresh();
+							 localStorage.clear();
+							 refresh();
 						 });
 				});
 			})
@@ -246,7 +278,7 @@ $(document).ready(function() {
 			}
 			responseDialog.html(message);
 			buttonOptions = {
-					"Go and submit" : function() {
+					"Go and submit perfectly" : function() {
 					responseDialog.dialog("close");
 					}
 			};
